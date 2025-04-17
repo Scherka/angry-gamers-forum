@@ -1,17 +1,10 @@
 package com.project.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user")
-@Getter
-@Setter
-@NoArgsConstructor
 public class User {
 
     @Id
@@ -30,4 +23,64 @@ public class User {
 
     @Column(name = "md_date_created", nullable = false)
     private LocalDateTime mdDateCreated;
+
+    public User() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public LocalDateTime getMdDateCreated() {
+        return mdDateCreated;
+    }
+
+    public void setMdDateCreated(LocalDateTime mdDateCreated) {
+        this.mdDateCreated = mdDateCreated;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id) && 
+               nickname.equals(user.nickname) && 
+               email.equals(user.email) && 
+               role.equals(user.role) && 
+               mdDateCreated.equals(user.mdDateCreated);
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(id, nickname, email, role, mdDateCreated);
+    }
 }
