@@ -2,6 +2,7 @@ package com.project.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -24,6 +25,13 @@ public class User {
     @Column(name = "md_date_created", nullable = false)
     private LocalDateTime mdDateCreated;
 
+    // Добавляем связь с Thread (один пользователь может быть автором нескольких обсуждений)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Thread> threads;
+
+    // Добавляем связь с Post (один пользователь может быть автором нескольких сообщений)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> posts;
     public User() {
     }
 

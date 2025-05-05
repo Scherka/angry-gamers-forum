@@ -2,7 +2,7 @@ package com.project.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-
+import java.util.List;
 @Entity
 @Table(name = "thread")
 public class Thread {
@@ -26,6 +26,7 @@ public class Thread {
     @JoinColumn(name = "problem_topic_id", referencedColumnName = "id", nullable = false)
     private ProblemTopic problemTopic;
 
+    
     @Column(name = "initial_post_id", nullable = false)
     private Long initialPostId;
 
@@ -34,6 +35,9 @@ public class Thread {
 
     @Column(name = "md_date_created", nullable = false)
     private LocalDateTime mdDateCreated;
+
+    @OneToMany(mappedBy = "thread", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> posts;
 
     public Thread() {
     }

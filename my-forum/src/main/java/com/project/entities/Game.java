@@ -1,7 +1,7 @@
 package com.project.entities;
 
 import jakarta.persistence.*;
-
+import java.util.List;
 @Entity
 @Table(name = "game")
 public class Game {
@@ -14,9 +14,12 @@ public class Game {
     @JoinColumn(name = "genre_id", referencedColumnName = "id", nullable = false)
     private Genre genre;
 
+
     @Column(length = 200, nullable = false)
     private String name;
-
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Thread> threads;
+    
     public Game() {
     }
 

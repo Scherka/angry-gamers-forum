@@ -1,7 +1,7 @@
 package com.project.entities;
 
 import jakarta.persistence.*;
-
+import java.util.List;
 @Entity
 @Table(name = "problem_topic")
 public class ProblemTopic {
@@ -13,6 +13,9 @@ public class ProblemTopic {
     @Column(length = 200, nullable = false)
     private String name;
 
+    @OneToMany(mappedBy = "problemTopic", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Thread> threads; // связь 1:N с Thread
+   
     public ProblemTopic() {
     }
 

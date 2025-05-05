@@ -1,7 +1,7 @@
 package com.project.entities;
 
 import jakarta.persistence.*;
-
+import java.util.List;
 @Entity
 @Table(name = "genre")
 public class Genre {
@@ -12,6 +12,9 @@ public class Genre {
 
     @Column(length = 200, nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Game> games;
 
     public Genre() {
     }

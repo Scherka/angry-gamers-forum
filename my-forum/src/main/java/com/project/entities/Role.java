@@ -1,7 +1,7 @@
 package com.project.entities;
 
 import jakarta.persistence.*;
-
+import java.util.List;
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -13,6 +13,8 @@ public class Role {
     @Column(length = 100, nullable = false)
     private String name;
 
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<User> users; // связь 1:N с User
     public Role() {
     }
 
