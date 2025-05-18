@@ -1,7 +1,13 @@
 package com.project.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "game")
 public class Game {
@@ -21,30 +27,6 @@ public class Game {
     private List<Thread> threads;
     
     public Game() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override

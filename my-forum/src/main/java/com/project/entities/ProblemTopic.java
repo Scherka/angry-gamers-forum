@@ -1,7 +1,13 @@
 package com.project.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "problem_topic")
 public class ProblemTopic {
@@ -17,22 +23,6 @@ public class ProblemTopic {
     private List<Thread> threads; // связь 1:N с Thread
    
     public ProblemTopic() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override

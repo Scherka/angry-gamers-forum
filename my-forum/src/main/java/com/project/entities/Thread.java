@@ -1,8 +1,14 @@
 package com.project.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 import java.util.List;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "thread")
 public class Thread {
@@ -42,70 +48,6 @@ public class Thread {
     public Thread() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
-    public ProblemTopic getProblemTopic() {
-        return problemTopic;
-    }
-
-    public void setProblemTopic(ProblemTopic problemTopic) {
-        this.problemTopic = problemTopic;
-    }
-
-    public Long getInitialPostId() {
-        return initialPostId;
-    }
-
-    public void setInitialPostId(Long initialPostId) {
-        this.initialPostId = initialPostId;
-    }
-
-    public LocalDateTime getLastPostTime() {
-        return lastPostTime;
-    }
-
-    public void setLastPostTime(LocalDateTime lastPostTime) {
-        this.lastPostTime = lastPostTime;
-    }
-
-    public LocalDateTime getMdDateCreated() {
-        return mdDateCreated;
-    }
-
-    public void setMdDateCreated(LocalDateTime mdDateCreated) {
-        this.mdDateCreated = mdDateCreated;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,5 +66,16 @@ public class Thread {
     @Override
     public int hashCode() {
         return java.util.Objects.hash(id, name, author, game, problemTopic, initialPostId, lastPostTime, mdDateCreated);
+    }
+
+    @Override
+    public String toString(){
+        return "Thread{" +
+                " id=" + this.id +
+                " name=" + this.name +
+                " author=" + this.author.getNickname() +
+                " game=" + this.game.getName() +
+                " problemTopic=" + this.problemTopic.getName() +
+                " mdDateCreated=" + this.mdDateCreated;
     }
 }
