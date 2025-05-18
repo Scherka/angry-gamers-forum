@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: 11-thread-tsvector
+      author: Scherka
+      changes:
+        - sql:
+            sql: |
+              CREATE EXTENSION IF NOT EXISTS pg_trgm;
+              CREATE EXTENSION IF NOT EXISTS unaccent;
+            splitStatements: false
+            endDelimiter: ;
+
+        - addColumn:
+            tableName: thread
+            columns:
+              - column:
+                  name: search_vector
+                  type: TSVECTOR
+
+        - createIndex:
+            tableName: thread
+            indexName: idx_thread_search_vector
+            columns:
+              - column:
+                  name: search_vector
+                  type: TSVECTOR
+
+        - createProcedure:
+            CREATE OR REPLACE FUNCTION thread_search_vector_update() RETURNS trigger AS $THREADS$
+            DECLARE
+              game_name TEXT;
+              genre_name TEXT;
+              problem_topic_name TEXT;
+            BEGIN
+              SELECT unaccent(game.name) INTO game_name FROM game WHERE game.id = NEW.game_id;
+              
+              SELECT unaccent(genre.name) INTO genre_name
+              FROM genre
+              JOIN game ON game.genre_id = genre.id
+              WHERE game.id = NEW.game_id;
+              
+              SELECT unaccent(problem_topic.name) INTO problem_topic_name
+              FROM problem_topic
+              WHERE problem_topic.id = NEW.problem_topic_id;
+            
+              NEW.search_vector :=
+                setweight(to_tsvector('russian', coalesce(unaccent(NEW.name), '')), 'A') ||
+                setweight(to_tsvector('english', coalesce(unaccent(NEW.name), '')), 'A') ||
+                
+                setweight(to_tsvector('russian', coalesce(game_name, '')), 'B') ||
+                setweight(to_tsvector('english', coalesce(game_name, '')), 'B') ||
+                
+                setweight(to_tsvector('russian', coalesce(genre_name, '')), 'C') ||
+                setweight(to_tsvector('english', coalesce(genre_name, '')), 'C') ||
+                
+                setweight(to_tsvector('russian', coalesce(problem_topic_name, '')), 'D') ||
+                setweight(to_tsvector('english', coalesce(problem_topic_name, '')), 'D');
+              RETURN NEW;
+            END;
+            $THREADS$ LANGUAGE plpgsql;
+
+        - sql:
+            CREATE TRIGGER thread_search_vector_trigger
+            BEFORE INSERT OR UPDATE ON thread
+            FOR EACH ROW EXECUTE FUNCTION thread_search_vector_update();

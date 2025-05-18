@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10-create-indexes
+      author: Scherka
+      changes:
+        # Индексы для внешних ключей
+        - createIndex:
+            tableName: user
+            indexName: idx_user_role_id
+            columns:
+              - column:
+                  name: role_id
+
+        - createIndex:
+            tableName: thread
+            indexName: idx_thread_author_id
+            columns:
+              - column:
+                  name: author_id
+
+        - createIndex:
+            tableName: thread
+            indexName: idx_thread_game_id
+            columns:
+              - column:
+                  name: game_id
+
+        - createIndex:
+            tableName: thread
+            indexName: idx_thread_problem_topic_id
+            columns:
+              - column:
+                  name: problem_topic_id
+
+        - createIndex:
+            tableName: post
+            indexName: idx_post_author_id
+            columns:
+              - column:
+                  name: author_id
+
+        - createIndex:
+            tableName: post
+            indexName: idx_post_thread_id
+            columns:
+              - column:
+                  name: thread_id
+
+        # Индексы для сортировки
+        - createIndex:
+            tableName: thread
+            indexName: idx_thread_md_date_created
+            columns:
+              - column:
+                  name: md_date_created
+
+        - createIndex:
+            tableName: thread
+            indexName: idx_thread_last_post_time
+            columns:
+              - column:
+                  name: last_post_time

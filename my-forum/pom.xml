@@ -26,7 +26,7 @@
     <maven.compiler.release>17</maven.compiler.release>
   </properties>
 
-  <!-- 🔧 Зависимости -->
+  <!--  Зависимости -->
   <dependencies>
     <!-- Spring Boot -->
     <dependency>
@@ -89,9 +89,15 @@
       <scope>runtime</scope>
     </dependency>
 
+    <!--liquibase-->
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+    </dependency>
+
   </dependencies>
 
-  <!-- 🔧 Плагины -->
+  <!--  Плагины -->
   <build>
     <plugins>
       <plugin>

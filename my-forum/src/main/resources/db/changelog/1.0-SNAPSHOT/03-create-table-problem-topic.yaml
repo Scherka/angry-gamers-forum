@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 03-create-table-problem-topic
+      author: Scherka
+      changes:
+        - createTable:
+            tableName: problem_topic
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: md_date_created
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP

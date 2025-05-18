@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 04-create-table-genre
+      author: Scherka
+      changes:
+        - createTable:
+            tableName: genre
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: md_date_created
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP

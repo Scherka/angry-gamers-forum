@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 08-insert-table-roles
+      author: Scherka
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ADMIN
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: USER

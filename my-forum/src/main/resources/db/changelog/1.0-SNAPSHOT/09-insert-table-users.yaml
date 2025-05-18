@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 09-insert-table-users
+      author: Scherka
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: nickname
+                  value: admin
+              - column:
+                  name: email
+                  value: admin@example.com
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name = 'ADMIN')
+              - column:
+                  name: md_date_created
+                  valueComputed: CURRENT_TIMESTAMP

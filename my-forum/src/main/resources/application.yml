@@ -1,21 +1,3 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/angry_gamers_forum_db
-    username: postgres
-    password: 12345678
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-    open-in-view: false
-
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-    org.hibernate.stat: DEBUG 
+  profiles:
+    active: test
