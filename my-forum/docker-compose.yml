@@ -1,0 +1,36 @@
+services:
+  my-forum-backend:
+    image: my-forum:1.0-SNAPSHOT
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my-forum-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SERVER_PORT: 8080
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/angry_gamers_forum_db
+      SPRING_PROFILES_ACTIVE: prod
+
+  postgres:
+    image: postgres:latest
+    container_name: postgresql-db
+    environment:
+      POSTGRES_DB: angry_gamers_forum_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d angry_gamers_forum_db" ]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+
+volumes:
+  postgres-data:
