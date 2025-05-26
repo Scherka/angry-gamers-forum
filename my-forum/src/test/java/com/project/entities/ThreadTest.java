@@ -11,8 +11,6 @@ class ThreadTest {
         Thread thread = new Thread();
         thread.setId(1L);
         thread.setName("Test Thread");
-        thread.setInitialPostId(1L);
-        thread.setLastPostTime(LocalDateTime.now());
         thread.setMdDateCreated(LocalDateTime.now());
 
         User author = new User();
@@ -38,8 +36,6 @@ class ThreadTest {
         assertEquals(author, thread.getAuthor());
         assertEquals(game, thread.getGame());
         assertEquals(problemTopic, thread.getProblemTopic());
-        assertEquals(1L, thread.getInitialPostId());
-        assertNotNull(thread.getLastPostTime());
         assertNotNull(thread.getMdDateCreated());
     }
 
@@ -67,8 +63,6 @@ class ThreadTest {
         thread1.setAuthor(author);
         thread1.setGame(game);
         thread1.setProblemTopic(problemTopic);
-        thread1.setInitialPostId(1L);
-        thread1.setLastPostTime(now);
         thread1.setMdDateCreated(now);
 
         Thread thread2 = new Thread();
@@ -77,8 +71,6 @@ class ThreadTest {
         thread2.setAuthor(author);
         thread2.setGame(game);
         thread2.setProblemTopic(problemTopic);
-        thread2.setInitialPostId(1L);
-        thread2.setLastPostTime(now);
         thread2.setMdDateCreated(now);
 
         assertEquals(thread1, thread2);
@@ -121,8 +113,6 @@ class ThreadTest {
         thread1.setAuthor(author1);
         thread1.setGame(game1);
         thread1.setProblemTopic(topic1);
-        thread1.setInitialPostId(1L);
-        thread1.setLastPostTime(LocalDateTime.now());
         thread1.setMdDateCreated(LocalDateTime.now());
 
         Thread thread2 = new Thread();
@@ -131,8 +121,6 @@ class ThreadTest {
         thread2.setAuthor(author2);
         thread2.setGame(game2);
         thread2.setProblemTopic(topic2);
-        thread2.setInitialPostId(2L);
-        thread2.setLastPostTime(LocalDateTime.now());
         thread2.setMdDateCreated(LocalDateTime.now());
 
         assertNotEquals(thread1, thread2);

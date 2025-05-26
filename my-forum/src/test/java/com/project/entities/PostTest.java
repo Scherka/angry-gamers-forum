@@ -23,8 +23,6 @@ class PostTest {
         Thread thread = new Thread();
         thread.setId(1L);
         thread.setName("Test Thread");
-        thread.setInitialPostId(1L);
-        thread.setLastPostTime(LocalDateTime.now());
         thread.setMdDateCreated(LocalDateTime.now());
         post.setThread(thread);
 
@@ -49,8 +47,6 @@ class PostTest {
         Thread thread = new Thread();
         thread.setId(1L);
         thread.setName("Test Thread");
-        thread.setInitialPostId(1L);
-        thread.setLastPostTime(now);
         thread.setMdDateCreated(now);
 
         Post post1 = new Post();
@@ -88,15 +84,11 @@ class PostTest {
         Thread thread1 = new Thread();
         thread1.setId(1L);
         thread1.setName("Thread 1");
-        thread1.setInitialPostId(1L);
-        thread1.setLastPostTime(LocalDateTime.now());
         thread1.setMdDateCreated(LocalDateTime.now());
 
         Thread thread2 = new Thread();
         thread2.setId(2L);
         thread2.setName("Thread 2");
-        thread2.setInitialPostId(2L);
-        thread2.setLastPostTime(LocalDateTime.now());
         thread2.setMdDateCreated(LocalDateTime.now());
 
         Post post1 = new Post();

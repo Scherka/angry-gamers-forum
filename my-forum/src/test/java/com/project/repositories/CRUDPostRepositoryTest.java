@@ -53,7 +53,6 @@ public class CRUDPostRepositoryTest extends AbstractRepositoryTest {
         newThread.setAuthor(author);
         newThread.setGame(savedGame);
         newThread.setProblemTopic(savedTopic);
-        newThread.setInitialPostId(1L);
         newThread.setMdDateCreated(LocalDateTime.now());
         thread = threadRepository.save(newThread);
 

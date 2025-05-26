@@ -34,14 +34,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: initial_post_id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
-              - column:
-                  name: last_post_time
-                  type: TIMESTAMP
-              - column:
                   name: md_date_created
                   type: TIMESTAMP
                   defaultValueComputed: CURRENT_TIMESTAMP

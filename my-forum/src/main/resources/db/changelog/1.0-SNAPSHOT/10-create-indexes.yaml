@@ -53,10 +53,3 @@ databaseChangeLog:
             columns:
               - column:
                   name: md_date_created
-
-        - createIndex:
-            tableName: thread
-            indexName: idx_thread_last_post_time
-            columns:
-              - column:
-                  name: last_post_time

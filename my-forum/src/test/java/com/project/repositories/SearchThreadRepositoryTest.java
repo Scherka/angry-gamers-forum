@@ -53,7 +53,6 @@ public class SearchThreadRepositoryTest extends AbstractRepositoryTest{
         newThread1.setAuthor(author);
         newThread1.setGame(game);
         newThread1.setProblemTopic(problemTopic);
-        newThread1.setInitialPostId(1L);
         newThread1.setMdDateCreated(LocalDateTime.now().minusMinutes(20));
         thread1 = threadRepository.save(newThread1);
 
@@ -61,7 +60,6 @@ public class SearchThreadRepositoryTest extends AbstractRepositoryTest{
         newThread2.setAuthor(author);
         newThread2.setGame(game);
         newThread2.setProblemTopic(problemTopic);
-        newThread2.setInitialPostId(2L);
         newThread2.setName("Проблемы с графикой в моей сессии");
         newThread2.setMdDateCreated(LocalDateTime.now());
         thread2 = threadRepository.save(newThread2);

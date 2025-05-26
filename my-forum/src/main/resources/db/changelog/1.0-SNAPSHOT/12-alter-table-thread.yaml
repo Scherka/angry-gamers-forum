@@ -10,15 +10,33 @@ databaseChangeLog:
                   name: post_count
                   type: INT
                   defaultValue: 0
+        - addColumn:
+            tableName: thread
+            columns:
+              - column:
+                  name: last_post_time
+                  type: TIMESTAMP
 
         - sql:
             sql: |
               CREATE OR REPLACE FUNCTION update_post_count() RETURNS TRIGGER AS $$
               BEGIN
                   IF (TG_OP = 'INSERT') THEN
-                      UPDATE thread SET post_count = post_count + 1 WHERE id = NEW.thread_id;
+                      UPDATE thread
+                      SET
+                        post_count = post_count + 1,
+                        last_post_time = NEW.md_date_created
+                      WHERE id = NEW.thread_id;
                   ELSIF (TG_OP = 'DELETE') THEN
-                      UPDATE thread SET post_count = post_count - 1 WHERE id = OLD.thread_id;
+                      UPDATE thread
+                      SET
+                        post_count = post_count - 1,
+                        last_post_time = (
+                            SELECT MAX(md_date_created) 
+                            FROM post 
+                            WHERE thread_id = OLD.thread_id
+                        )
+                      WHERE id = OLD.thread_id;
                   END IF;
                   RETURN NULL;
               END;
