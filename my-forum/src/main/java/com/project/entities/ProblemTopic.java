@@ -3,6 +3,7 @@ package com.project.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "problem_topic")
+@Accessors(chain = true)
 public class ProblemTopic {
 
     @Id

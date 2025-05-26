@@ -3,6 +3,7 @@ package com.project.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "thread")
+@Accessors(chain = true)
 public class Thread {
 
     @Id
@@ -32,12 +34,6 @@ public class Thread {
     @JoinColumn(name = "problem_topic_id", referencedColumnName = "id", nullable = false)
     private ProblemTopic problemTopic;
 
-    
-    @Column(name = "initial_post_id", nullable = false)
-    private Long initialPostId;
-
-    @Column(name = "last_post_time")
-    private LocalDateTime lastPostTime;
 
     @Column(name = "md_date_created", nullable = false)
     private LocalDateTime mdDateCreated;
@@ -57,15 +53,13 @@ public class Thread {
                name.equals(thread.name) && 
                author.equals(thread.author) && 
                game.equals(thread.game) && 
-               problemTopic.equals(thread.problemTopic) && 
-               initialPostId.equals(thread.initialPostId) && 
-               lastPostTime.equals(thread.lastPostTime) && 
+               problemTopic.equals(thread.problemTopic) &&
                mdDateCreated.equals(thread.mdDateCreated);
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(id, name, author, game, problemTopic, initialPostId, lastPostTime, mdDateCreated);
+        return java.util.Objects.hash(id, name, author, game, problemTopic, mdDateCreated);
     }
 
     @Override

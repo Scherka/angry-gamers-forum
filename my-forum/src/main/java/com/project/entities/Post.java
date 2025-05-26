@@ -3,6 +3,7 @@ package com.project.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @Table(name = "post")
+@Accessors(chain = true)
 public class Post {
 
     @Id
