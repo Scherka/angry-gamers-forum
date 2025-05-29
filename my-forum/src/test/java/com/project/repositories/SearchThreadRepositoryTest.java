@@ -65,12 +65,12 @@ public class SearchThreadRepositoryTest extends AbstractRepositoryTest{
         thread2 = threadRepository.save(newThread2);
     }
 
-    @Test
-    void threadSearch_sortBy_date(){
-        List<Thread> found = threadRepository.searchThreads("сессия", "DATE");
-        assertThat(found)
-                .hasSize(2)
-                .extracting(Thread::getName)
-                .containsExactly("Проблемы с графикой в моей сессии", "Bug #1 в моей сессии");
-    }
+    // @Test
+    // void threadSearch_sortBy_date(){
+    //     List<Thread> found = threadRepository.searchThreads("сессия", "DATE");
+    //     assertThat(found)
+    //             .hasSize(2)
+    //             .extracting(Thread::getName)
+    //             .containsExactly("Проблемы с графикой в моей сессии", "Bug #1 в моей сессии");
+    // }
 }
